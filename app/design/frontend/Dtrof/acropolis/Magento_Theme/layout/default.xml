@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">img/logo.png</argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceContainer name="header.panel">
+            <block class="Magento\Framework\View\Element\Template" name="header.mobile.menu" template="Magento_Theme::html/static-blocks/header-mobile-menu.phtml" />
+
+            <container name="header-top-info" label="Page Header Top information" htmlTag="div" htmlClass="header-top-info">
+                <block class="Magento\Framework\View\Element\Html\Links" name="header.links" after="-">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">header-top-links</argument>
+                    </arguments>
+
+                    <block class="Magento\Framework\View\Element\Template" name="header.register.links" template="Magento_Theme::html/static-blocks/header-register-links.phtml" />
+
+                    <!-- Here you can add custom top links -->
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="header.links.wholesale">
+                        <arguments>
+                            <argument name="label" translate="true" xsi:type="string">wholesale huyers</argument>
+                            <argument name="target" xsi:type="string">_blank</argument>
+                            <argument name="path" xsi:type="string">#</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="header.links.shipping">
+                        <arguments>
+                            <argument name="label" translate="true" xsi:type="string">shipping &amp; payment</argument>
+                            <argument name="path" xsi:type="string">shipping-and-payment</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="header.links.news">
+                        <arguments>
+                            <argument name="label" translate="true" xsi:type="string">news</argument>
+                            <argument name="path" xsi:type="string">blog/category/news/</argument>
+                        </arguments>
+                    </block>
+                    <!-- /////////////////////////////////////////////////////////////////////////////// -->
+                </block>
+            </container>
+
+            <container name="header-main-info" label="Page Header Main information" htmlTag="div" htmlClass="header-main-info" after="-"/>
+
+        </referenceContainer>
+
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="header.top.info" template="Magento_Theme::html/static-blocks/top-shop-info.phtml" before="-">
+                <block name="header.top.info.emails" as="emails" class="Magento\Cms\Block\Block">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">oyi-header-emails</argument>
+                    </arguments>
+                </block>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="header.top.social-links" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">oyi-header-social</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="page.top">
+            <block class="Magento\Framework\View\Element\Template" name="header.mobile.nav" template="Magento_Theme::html/static-blocks/header-mobile-nav.phtml" before="-" />
+        </referenceContainer>
+        <referenceContainer name="footer-copyright">
+            <block class="Magento\Framework\View\Element\Template" name="footer.copyright" template="Magento_Theme::html/static-blocks/footer-copyright.phtml" />
+        </referenceContainer>
+
+
+
+
+        <move element="minicart" destination="header-main-info" after="-"/>
+        <move element="store_language" destination="header-top-info" before="-"/>
+        <move element="currency" destination="header-top-info" before="-"/>
+        <move element="page.top.wrap" destination="header.container" after="-"/>
+        <move element="breadcrumbs" destination="breadcrumbs.wrap"/>
+
+        <move element="copyright" destination="footer-copyright" before="-"/>
+
+        <referenceBlock name="report.bugs" remove="true"/>
+        <referenceBlock name="skip_to_content" remove="true"/>
+        <referenceBlock name="store.links" remove="true"/>
+        <referenceBlock name="store.settings" remove="true"/>
+        <referenceBlock name="footer" remove="true"/>
+
+
+    </body>
+</page>

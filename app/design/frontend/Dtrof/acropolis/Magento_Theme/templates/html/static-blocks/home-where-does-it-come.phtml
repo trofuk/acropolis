@@ -1,0 +1,11 @@
+<div class="home-whereitcomes container">
+    <?=$block->getChildHtml('home.wheredoesitcome.block')?>
+</div>
+<script>
+    require(['jquery'], function($) {
+        var $whereitcomesTitle = $('.home-whereitcomes h2');
+        if ($whereitcomesTitle.length) {
+            $whereitcomesTitle.wrap('<div class="title">');
+        }
+    })
+</script>

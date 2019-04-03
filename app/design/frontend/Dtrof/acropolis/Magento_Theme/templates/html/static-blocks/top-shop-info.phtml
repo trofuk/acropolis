@@ -1,0 +1,35 @@
+<?php
+    //Get store config information
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $conf = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface');
+    $phone = $conf->getValue('general/store_information/phone', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    $city = $conf->getValue('general/store_information/city', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    $street = $conf->getValue('general/store_information/street_line1', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    $email = $conf->getValue('trans_email/ident_general/email', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+?>
+<div class="shop-top-info">
+    <div class="emails-block-wrap topinfo-block" id="emails-block-wrap">
+        <div class="emails-block">
+            <span class="main-email">
+                <a href="mailto:<?=$email?>"><?=$email?></a>
+                <span class="trigger"></span>
+            </span>
+        </div>
+        <p><?php echo __('For any questions you can contact by e-mail')?></p>
+        <div class="additional-emails" data-mage-init='{"dropdownDialog":{
+            "appendTo":"#emails-block-wrap",
+            "triggerTarget":".trigger",
+            "closeOnMouseLeave": false,
+            "triggerClass":"active",
+            "parentClass":"active",
+            "buttons":null}}'>
+            <?php echo $block->getChildHtml('emails') ?>
+        </div>
+    </div>
+    <div class="location-block-wrap topinfo-block">
+        <strong class="city"><?=$city?></strong>
+        <p><?=$street?></p>
+    </div>
+
+</div>
+

@@ -1,0 +1,30 @@
+<div class="share-links-wrap">
+    <p class="share-title"><?php echo __('Share the product in social networks') ?></p>
+    <ul class="share-links-block">
+        <li class="share-links-item">
+            <a href="https://www.facebook.com/sharer.php?u=<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true])?>"
+               target="_blank"
+               class="social-icon icon-soc-fb">
+
+            </a>
+        </li>
+        <li class="share-links-item">
+            <a href="https://plus.google.com/share?url=<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]) ?>"
+               class="social-icon icon-soc-gp"
+               target="_blank">
+            </a>
+        </li>
+        <li class="share-links-item">
+            <a href="https://twitter.com/intent/tweet?url=<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]) ?>"
+               class="social-icon icon-soc-tw"
+               target="_blank">
+            </a>
+        </li>
+        <li class="share-links-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true])?>"
+               target="_blank"
+               class="social-icon icon-soc-ln">
+            </a>
+        </li>
+    </ul>
+</div>

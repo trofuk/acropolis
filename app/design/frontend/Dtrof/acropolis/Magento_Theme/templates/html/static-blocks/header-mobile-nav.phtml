@@ -1,0 +1,14 @@
+<div class="mobile-navigation">
+    <span class="menu-button"></span>
+    <span class="menu-text"><?php echo __('Menu')?></span>
+</div>
+<script>
+    require(['jquery'], function($){
+        $(document).ready(function(){
+            $('.mobile-navigation').on('click', function(){
+                $(this).toggleClass('opened');
+                $('.nav-sections').toggleClass('active');
+            })
+        })
+    })
+</script>

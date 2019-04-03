@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
+<?php
+    $_product = $block->getProduct();
+//get quantity
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+    $qty = $StockState->getStockQty($_product->getId(), $_product->getStore()->getWebsiteId());
+?>
+
+<?php if ($block->displayProductStockStatus()): ?>
+    <?php if ($_product->isAvailable()): ?>
+        <div class="stock available" title="<?php /* @escapeNotVerified */ echo __('Availability') ?>">
+            <span class="title"><?php /* @escapeNotVerified */ echo __('Status') ?></span>
+            <span class="value"><?php /* @escapeNotVerified */ echo __('In stock') ?></span>
+        </div>
+    <?php else: ?>
+        <div class="stock unavailable" title="<?php /* @escapeNotVerified */ echo __('Availability') ?>">
+            <span class="title"><?php /* @escapeNotVerified */ echo __('Status') ?></span>
+            <span class="value"><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span>
+        </div>
+    <?php endif; ?>
+    <div class="stock product-quantity">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Stock left') ?></span>
+        <span class="value"><?=$qty?></span> <?php echo __('pieces') ?>
+    </div>
+<?php endif; ?>

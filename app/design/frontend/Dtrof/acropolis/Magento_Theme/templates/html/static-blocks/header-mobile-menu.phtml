@@ -1,0 +1,17 @@
+<div class="mobile-menu-wrap">
+    <div class="mobile-menu-link">
+        <span class="icon-dots"></span>
+        <?php echo __('more') ?>
+    </div>
+</div>
+
+<script>
+    require(['jquery'], function($){
+        $(document).ready(function(){
+            $('.mobile-menu-link').on('click', function(){
+                $(this).toggleClass('opened');
+                $('.header-top-info').toggleClass('active');
+            })
+        })
+    })
+</script>

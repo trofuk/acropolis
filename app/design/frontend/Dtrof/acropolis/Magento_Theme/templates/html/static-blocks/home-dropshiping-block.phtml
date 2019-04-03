@@ -1,0 +1,52 @@
+<div class="home-dropshiping-block container">
+    <?=$block->getChildHtml('home.dropshiping.block')?>
+</div>
+<script>
+    function addLink(ext){
+        var allLinks = document.querySelectorAll('.home-dropshiping-block p a[href$=".'+ext+'"]');
+        for(var i=0; i < allLinks.length; i++){
+            var newLink = document.createElement('a'),
+                newLinkWrap = document.createElement('span');
+            newLinkWrap.className = 'buttonWrap';
+            newLink.className = 'button';
+            newLink.innerText = "<?php echo __('Download')?> "+ext;
+            newLink.setAttribute('href', allLinks[i].getAttribute('href'));
+            newLinkWrap.appendChild(newLink);
+            allLinks[i].parentElement.appendChild(newLinkWrap);
+        }
+    }
+    addLink('xls');
+    addLink('zip');
+
+    require(['jquery', 'owl_carousel' ], function($){
+        $('.home-dropshiping-block p').wrapAll('<div class="slider-block">');
+        var owlSettings = {
+            dots: false,
+            nav: true,
+            loop: false,
+            responsive:{
+                0:{
+                    items: 1
+                },
+                576:{
+                    items:3,
+                    nav:false,
+                    mouseDrag: false,
+                    touchDrag:false,
+                    pullDrag: false
+                }
+            }
+
+        };
+        if( $(window).outerWidth() < 576 ){
+            $('.home-dropshiping-block .slider-block').owlCarousel(owlSettings);
+        };
+        $(window).resize(function(){
+            if( ($(window).outerWidth() < 576) && !$('.home-dropshiping-block .slider-block').hasClass('owl-carousel')){
+                $('.home-dropshiping-block .slider-block').owlCarousel(owlSettings);
+            }
+        })
+
+    })
+
+</script>

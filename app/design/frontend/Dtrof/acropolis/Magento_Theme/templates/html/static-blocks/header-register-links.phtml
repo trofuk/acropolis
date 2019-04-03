@@ -1,0 +1,16 @@
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+?>
+
+<?php if(empty($customerSession->isLoggedIn())): ?>
+    <li class="header-register-link">
+        <a href="<?=$this->getBaseUrl()?>customer/account/login/"><span class="icon-block"></span><?php echo __('account')?></a>
+    </li>
+    <!--<li class="header-register-link">
+        <a href="<?/*=$this->getBaseUrl()*/?>customer/account/create/"><span class="icon-block"></span><?php /*echo __('create an account')*/?></a>
+    </li>
+    <li class="header-signin-link">
+        <a href="<?/*=$this->getBaseUrl()*/?>customer/account/login/"><span class="icon-block"></span><?php /*echo __('sign in')*/?></a>
+    </li>-->
+<?php endif; ?>

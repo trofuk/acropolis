@@ -1,0 +1,11 @@
+<?php
+    //Get store config information
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $conf = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface');
+    $city = $conf->getValue('general/store_information/city', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    $street = $conf->getValue('general/store_information/street_line1', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+?>
+<div class="location-block">
+    <p><strong class="city"><?=$city?></strong> <?=$street?></p>
+</div>
+

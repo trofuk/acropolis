@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="page.main.title" remove="true"/>
+    <referenceContainer name="content">
+
+        <block class="Magento\Framework\View\Element\Template" name="home.dropshiping" template="Magento_Theme::html/static-blocks/home-dropshiping-block.phtml">
+            <block class="Magento\Cms\Block\Block" name="home.dropshiping.block">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">oyi-dropshiping-block</argument>
+                </arguments>
+            </block>
+        </block>
+
+        <container name="home.whereitcomes.wrap" htmlTag="div" htmlClass="home-whereitcomes container">
+            <block class="Magento\Framework\View\Element\Template" name="home.wheredoesitcome" template="Magento_Theme::html/static-blocks/home-where-does-it-come.phtml">
+                <block class="Magento\Cms\Block\Block" name="home.wheredoesitcome.block">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">oyi-wheredoesitcomes</argument>
+                    </arguments>
+                </block>
+            </block>
+        </container>
+
+        <block class="Magento\CatalogWidget\Block\Product\ProductsList" template="product/widget/content/grid.phtml">
+            <arguments>
+                <argument name="title" xsi:type="string" translate="true">Top sale</argument>
+                <argument name="products_count" xsi:type="number">10</argument>
+                <argument name="conditions_encoded" xsi:type="string">a:2:[i:1;a:4:[s:4:`type`;s:50:`Magento|CatalogWidget|Model|Rule|Condition|Combine`;s:10:`aggregator`;s:3:`all`;s:5:`value`;s:1:`1`;s:9:`new_child`;s:0:``;]s:4:`1--1`;a:4:[s:4:`type`;s:50:`Magento|CatalogWidget|Model|Rule|Condition|Product`;s:9:`attribute`;s:8:`top_sale`;s:8:`operator`;s:2:`==`;s:5:`value`;s:1:`1`;]]</argument>
+                <argument name="cache_lifetime" xsi:nil="true" xsi:type="null">null</argument>
+            </arguments>
+        </block>
+
+        <block class="Magento\Catalog\Block\Product\Widget\NewWidget" name="home.newitems" template="product/widget/new/content/new_grid.phtml">
+            <arguments>
+                <argument name="title" xsi:type="string"  translate="true">New Items</argument>
+                <argument name="display_type" xsi:type="string">new_products</argument>
+                <argument name="products_count" xsi:type="number">7</argument>
+                <argument name="cache_lifetime" xsi:nil="true" xsi:type="null">null</argument>
+            </arguments>
+        </block>
+
+        <block class="Magefan\Blog\Block\Widget\Recent" name="home.reviews">
+            <arguments>
+                <argument name="title" xsi:type="string"  translate="true">Reviews</argument>
+                <argument name="number_of_posts" xsi:type="number">5</argument>
+                <argument name="category_id" xsi:type="number">2</argument>
+                <argument name="custom_template" xsi:type="string">widget/reviews.phtml</argument>
+            </arguments>
+        </block>
+
+        <block class="Magefan\Blog\Block\Widget\Recent" name="home.news" template="widget/recent_masonry.phtml">
+            <arguments>
+                <argument name="title" xsi:type="string" translate="true">News</argument>
+                <argument name="number_of_posts" xsi:type="number">5</argument>
+                <argument name="category_id" xsi:type="number">1</argument>
+            </arguments>
+        </block>
+
+    </referenceContainer>
+
+    <move element="page.messages" destination="content" before="home.dropshiping"/>
+</page>

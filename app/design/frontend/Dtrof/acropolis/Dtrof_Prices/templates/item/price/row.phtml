@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Item\Price\Renderer */
+$price_without_discount = 0;
+$_item = $block->getItem();
+$discount = $block->getCustomDiscount();
+if($discount > 0){
+    $qty = $_item->getQty();
+    $item_price = $_item->getCalculationPrice();
+    $price_with_discount = $item_price - (($item_price*$discount)/100);
+    $price = $price_with_discount * $qty;
+    $price_without_discount = $item_price*$qty;
+}else{
+    $price = $_item->getRowTotal();
+}
+?>
+<span class="price-excluding-tax" data-label="<?php echo $block->escapeHtml(__('Excl. Tax'));?>">
+    <?php if($discount > 0):?>
+    <span class="cart-price-old" title="<?=__('Price without discount')?>">
+        <?php /* @escapeNotVerified */ echo $this->helper('Magento\Checkout\Helper\Data')->formatPrice($price_without_discount) ?>
+    </span>
+    <?php endif;?>
+    <span class="cart-price" title="<?=__('Price with discount')?>">
+        <?php /* @escapeNotVerified */ echo $this->helper('Magento\Checkout\Helper\Data')->formatPrice($price) ?>
+    </span>
+</span>

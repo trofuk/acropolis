@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Item\Price\Renderer */
+$_item = $block->getItem();
+$discount = $block->getCustomDiscount();
+$price = $_item->getCalculationPrice();
+?>
+<span class="price-including-tax" data-label="<?php echo $block->escapeHtml(__('Excl. Tax')); ?>">
+
+    <?php if($discount > 0): ?>
+        <?php $custom_price = ($price - (($price*$discount)/100));?>
+        <span class="cart-price-old" title="<?=__('Price without discount')?>">
+            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Checkout\Helper\Data')->formatPrice($price) ?>
+        </span>
+        <span class="cart-price">
+            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Checkout\Helper\Data')->formatPrice($custom_price) ?>
+        </span>
+    <?php else: ?>
+        <span class="cart-price">
+            <?php /* @escapeNotVerified */ echo $this->helper('Magento\Checkout\Helper\Data')->formatPrice($price) ?>
+        </span>
+    <?php endif; ?>
+
+</span>

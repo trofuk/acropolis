@@ -1,0 +1,110 @@
+// Some base style for price box
+//  _____________________________________________
+
+@c-text-grey-dark: #7f8c8d;
+@c-dark: #222222;
+@c-input-border: #d2d2d2;
+@c-text-yellow: #ffcb08;
+
+@f-u-bold: Arial, sun-serif;
+@f-u-reg: Arial, sun-serif;
+
+& when (@media-common = true) {
+    .price-box{
+        padding-top: 15px;
+        .price-container{
+            display: block;
+            position: relative;
+            padding-bottom: 10px;
+            font: 14px/20px @f-u-reg;
+            color: @c-text-grey-dark;
+            .price-wrapper.active{
+                font: 20px @f-u-bold;
+                color: @c-dark;
+            }
+        }
+        .price-decsription{
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            top: 0;
+            .price-info-icon {
+                background: url('../Dtrof_Prices/img/information.png') no-repeat center center;
+                display: inline-block;
+                width: 18px;
+                height: 18px;
+                text-align: center;
+                border-radius: 50%;
+                border: 1px solid @c-input-border;
+                cursor: pointer;
+                transition: all .3s;
+            }
+            .price-message{
+                display: none;
+                width: 230px;
+                position: fixed;
+                margin: 0;
+                padding: 10px;
+                background-color: white;
+                z-index: 1;
+                top: -10px;
+                left: calc(100% + 10px);
+                box-shadow: 0 0 5px 0 @c-input-border;
+                &:before{
+                    content: '';
+                    display: inline-block;
+                    position: absolute;
+                    right: 100%;
+                    top: 10px;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 5px 5px 5px 0;
+                    border-color: transparent white transparent transparent;
+                }
+                &.right{
+                    &:before{
+                        bottom: 100%;
+                        top: auto;
+                        right: auto;
+                        left: 15px;
+                        width: 0;
+                        height: 0;
+                        border-style: solid;
+                        border-width: 0px 5px 5px 5px;
+                        border-color: transparent transparent white transparent;
+                    }
+                }
+            }
+            &:hover{
+                .price-info-icon{
+                    background-color: @c-text-yellow;
+                    border-color: @c-text-yellow;
+                }
+                .price-message{
+
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
